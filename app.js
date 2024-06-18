@@ -12,18 +12,21 @@ const registro = require('./registro');
 const { eliminarUsuario, obtenerUsuario } = require('./usuario');
 const validar = require('./validar');
 const saltRounds = 10;
-
+mysql://root:FucmsjrqKifwtoAeQuwpdugmNUkaZYOK@monorail.proxy.rlwy.net:30245/railway
 app.use(cors({
-  origin: process.env.URLFRONTEND || 'http://localhost:5173',
+  origin: process.env.HOSTFRONTEND || 'http://localhost:5173',
   credentials: true
 }))
+
+const production = (process.env.NODE_ENV === 'production')
 app.use(session({
   secret: process.env.SECRETSESSION || 'saksasd8sa7d7sad',
   proxy: process.env.NODE_ENV === 'production',
   cookie: {
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'none'
-  }
+    sameSite: 'none',
+    secure: production
+  },
+  proxy: production
 }))
 // Create the connection to database
 
