@@ -4,7 +4,7 @@ const connection = mysql.createPool({
     host: process.env.HOSTTDB || 'localhost',
     user: process.env.USERDB || 'root',
     database: process.env.DB || 'login',
-    password: process.env.PASSWORDDDB || '',
+    password: process.env.PASSWORDDB || '',
     port: process.env.PORTDB || 3306,
 });
 
